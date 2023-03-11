@@ -1,0 +1,30 @@
+﻿@model phamtiendung_2011062063bai3.ViewModels.CourseViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+<form>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Place)
+        @Html.TextBoxFor(m => m.Place, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ngay)
+        @Html.TextAreaFor(m => m.ngay, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.thoigiann)
+        @Html.TextAreaFor(m => m.thoigiann, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.loai)
+        @Html.DropDownListFor(m => m.loai, new SelectList(Model.Categories, "Id", "Name"), "", new { @class = "form-control"})
+    </div>
+
+    <div class="form-group"></div>
+    <div class="form-group"></div>
+    <div class="form-group"></div>
+</form>
