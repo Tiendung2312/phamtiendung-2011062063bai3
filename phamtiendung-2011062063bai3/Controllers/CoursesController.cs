@@ -1,4 +1,5 @@
-﻿using phamtiendung_2011062063bai3.Models;
+﻿using Microsoft.AspNet.Identity;
+using phamtiendung_2011062063bai3.Models;
 using phamtiendung_2011062063bai3.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace phamtiendung_2011062063bai3.Controllers
         {
             _dbContext = new ApplicationDbContext();
  
-        } 
+        }
+        [Authorize]
         public ActionResult Create()
         {
             var ViewModel = new CourseViewModel
@@ -25,5 +27,28 @@ namespace phamtiendung_2011062063bai3.Controllers
             };
             return View(ViewModel);
         }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CourseViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Categories = _dbContext.Categories.ToList();
+                return View("Create", viewModel);
+            }
+            var course = new Course
+            {
+                LecturerId = User.Identity.GetUserId(),
+                DateTime = viewModel.GetDateTime(),
+                CategoryId = viewModel.Category,
+                Place = viewModel.Place
+            };
+            _dbContext.Courses.Add(course);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
