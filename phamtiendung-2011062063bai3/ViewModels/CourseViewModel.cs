@@ -3,6 +3,7 @@ using phamtiendung_2011062063bai3.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace phamtiendung_2011062063bai3.ViewModels
 {
@@ -26,5 +27,6 @@ namespace phamtiendung_2011062063bai3.ViewModels
         {
             return DateTime.Parse(string.Format("{0} {1}", Date, Time));
         }
+
     }
 }

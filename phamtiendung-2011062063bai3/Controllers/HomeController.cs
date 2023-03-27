@@ -1,4 +1,5 @@
 ﻿using phamtiendung_2011062063bai3.Models;
+using phamtiendung_2011062063bai3.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,7 +23,13 @@ namespace phamtiendung_2011062063bai3.Controllers
                 .Include(c => c.Category)
                 .Where(c => c.DateTime > DateTime.Now);
 
-            return View(upcommingCourses);
+            var viewModel = new CoursesViewModel
+            {
+                UpcommingCourses = upcommingCourses,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+            
+            return View(viewModel);
   }
 
         public ActionResult About()

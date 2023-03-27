@@ -17,7 +17,6 @@ namespace phamtiendung_2011062063bai3.ViewModels
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);
-
             return (isValid && dateTime > DateTime.Now);
         }
 
